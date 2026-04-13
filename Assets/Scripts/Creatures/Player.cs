@@ -30,6 +30,16 @@ public class Player : Creature
                 dashCoroutine = StartCoroutine(DashRoutine(dashDir));
         }
 
+        if (inputManager.InteractPressed())
+        {
+            // Voor interact met bijv. fruit
+        }
+
+        if (inputManager.SellPressed())
+        {
+            // Om fruit te verkopen. Ik zit te denken zoek het dichtsbijzijnde fruit, en dan activeer de functie in de fruit script (fruit class waar elk fruit van inherit, met sell en interact functie)
+        }
+
         movement.Move(this);
     }
 
