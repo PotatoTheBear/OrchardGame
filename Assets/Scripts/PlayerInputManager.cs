@@ -34,10 +34,13 @@ public class PlayerInputManager : MonoBehaviour
 
         inputActions.Arcade.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         inputActions.Arcade.Move.canceled += ctx => moveInput = Vector2.zero;
-
         //playerInput = GetComponent<PlayerInput>();
 
         inputActions.Enable();
+
+        inputActions.Arcade.Disable();
+        inputActions.KBM.Enable();
+        activeMap = inputActions.KBM;
     }
 
     public Vector2 GetMoveInput() { return moveInput; }

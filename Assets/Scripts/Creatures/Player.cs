@@ -11,18 +11,11 @@ public class Player : Creature
 
     private Coroutine dashCoroutine;
 
-    public void SetMovement(IMovement newMovement)
-    {
-        movement = newMovement;
-    }
-    private void Awake()
-    {
-        inputManager = PlayerInputManager.Instance;
-    }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        inputManager = PlayerInputManager.Instance;
+
         movement = new WalkMovement();
     }
 
