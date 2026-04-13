@@ -125,7 +125,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""id"": ""852140f2-7766-474d-8707-702459ba45f3"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
@@ -159,6 +159,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Swap"",
                     ""type"": ""Button"",
                     ""id"": ""bb8e5889-addb-4b6e-a5b2-d1b3ad090a91"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Spawn Fruit"",
+                    ""type"": ""Button"",
+                    ""id"": ""f49f48b3-92b1-40c4-b8ae-12f264cff1f2"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -319,6 +328,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""Swap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47c1d4e6-da15-40bf-bf7c-2964959ad425"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Spawn Fruit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -866,7 +886,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""id"": ""66913757-a761-41f2-a73b-3f9c462a76fa"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
@@ -1093,6 +1113,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_KBM_Inventory = m_KBM.FindAction("Inventory", throwIfNotFound: true);
         m_KBM_Sell = m_KBM.FindAction("Sell", throwIfNotFound: true);
         m_KBM_Swap = m_KBM.FindAction("Swap", throwIfNotFound: true);
+        m_KBM_SpawnFruit = m_KBM.FindAction("Spawn Fruit", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1204,6 +1225,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_KBM_Inventory;
     private readonly InputAction m_KBM_Sell;
     private readonly InputAction m_KBM_Swap;
+    private readonly InputAction m_KBM_SpawnFruit;
     /// <summary>
     /// Provides access to input actions defined in input action map "KBM".
     /// </summary>
@@ -1247,6 +1269,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "KBM/Swap".
         /// </summary>
         public InputAction @Swap => m_Wrapper.m_KBM_Swap;
+        /// <summary>
+        /// Provides access to the underlying input action "KBM/SpawnFruit".
+        /// </summary>
+        public InputAction @SpawnFruit => m_Wrapper.m_KBM_SpawnFruit;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1297,6 +1323,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Swap.started += instance.OnSwap;
             @Swap.performed += instance.OnSwap;
             @Swap.canceled += instance.OnSwap;
+            @SpawnFruit.started += instance.OnSpawnFruit;
+            @SpawnFruit.performed += instance.OnSpawnFruit;
+            @SpawnFruit.canceled += instance.OnSpawnFruit;
         }
 
         /// <summary>
@@ -1332,6 +1361,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Swap.started -= instance.OnSwap;
             @Swap.performed -= instance.OnSwap;
             @Swap.canceled -= instance.OnSwap;
+            @SpawnFruit.started -= instance.OnSpawnFruit;
+            @SpawnFruit.performed -= instance.OnSpawnFruit;
+            @SpawnFruit.canceled -= instance.OnSpawnFruit;
         }
 
         /// <summary>
@@ -1811,6 +1843,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSwap(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Spawn Fruit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSpawnFruit(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

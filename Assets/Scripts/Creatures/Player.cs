@@ -4,8 +4,11 @@ using UnityEngine.InputSystem;
 
 public class Player : Creature
 {
+    public static Player Instance { get; private set; }
+
     [SerializeField] protected float dashCooldown;
     private PlayerInputManager inputManager;
+    private float minInteractDistance = 16;
 
     private IMovement movement;
 
@@ -15,6 +18,7 @@ public class Player : Creature
     void Start()
     {
         inputManager = PlayerInputManager.Instance;
+        Instance = this;
 
         movement = new WalkMovement();
     }
@@ -33,12 +37,22 @@ public class Player : Creature
         if (inputManager.InteractPressed())
         {
             // Voor interact met bijv. fruit
+            var closestFruit = Fruit.GetClosest(transform.position, minInteractDistance);
+            if (closestFruit != null)
+                closestFruit.Interact();
         }
 
         if (inputManager.SellPressed())
         {
             // Om fruit te verkopen. Ik zit te denken zoek het dichtsbijzijnde fruit, en dan activeer de functie in de fruit script (fruit class waar elk fruit van inherit, met sell en interact functie)
+            var closestFruit = Fruit.GetClosest(transform.position, minInteractDistance);
+            if (closestFruit != null)
+                closestFruit.Sell();
         }
+
+        if (inputManager.FruitPressed())
+            foreach (var tree in FruitTree.All)
+                tree.DropFruit();
 
         movement.Move(this);
     }

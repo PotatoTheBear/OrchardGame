@@ -39,7 +39,7 @@
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -73,6 +73,15 @@
                     "name": "Swap",
                     "type": "Button",
                     "id": "bb8e5889-addb-4b6e-a5b2-d1b3ad090a91",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Spawn Fruit",
+                    "type": "Button",
+                    "id": "f49f48b3-92b1-40c4-b8ae-12f264cff1f2",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -233,6 +242,17 @@
                     "action": "Swap",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "47c1d4e6-da15-40bf-bf7c-2964959ad425",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Spawn Fruit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -780,7 +800,7 @@
                     "id": "66913757-a761-41f2-a73b-3f9c462a76fa",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {

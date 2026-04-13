@@ -9,6 +9,12 @@ public class Creature : MonoBehaviour
 
     public void TakeDMG(float dmg) { hp -= dmg; }
 
+    public void Heal(float amount) 
+    { 
+        hp += amount;
+        hp = Mathf.Clamp(hp, 0, maxHp);
+    }
+
     public float GetHP() { return hp; }
 
     public float GetMovementSpeed() { return movementSpeed; }
