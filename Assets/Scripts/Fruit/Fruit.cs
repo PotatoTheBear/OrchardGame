@@ -27,7 +27,6 @@ public abstract class Fruit : MonoBehaviour
     public static Fruit GetClosest(Vector2 position, float minDist = Mathf.Infinity)
     {
         Fruit closest = null;
-        //float minDistSqr = Mathf.Infinity;
 
         foreach (Fruit fruit in All)
         {

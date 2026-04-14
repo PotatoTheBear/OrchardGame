@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 public class PlayerInputManager : MonoBehaviour
 {
@@ -34,13 +35,13 @@ public class PlayerInputManager : MonoBehaviour
 
         inputActions.Arcade.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         inputActions.Arcade.Move.canceled += ctx => moveInput = Vector2.zero;
-        //playerInput = GetComponent<PlayerInput>();
 
         inputActions.Enable();
 
         inputActions.Arcade.Disable();
         inputActions.KBM.Enable();
         activeMap = inputActions.KBM;
+        WeaponManager.Aim = new ManualAim();
     }
 
     public Vector2 GetMoveInput() { return moveInput; }
@@ -66,6 +67,7 @@ public class PlayerInputManager : MonoBehaviour
             inputActions.Arcade.Disable();
             inputActions.KBM.Enable();
             activeMap = inputActions.KBM;
+            WeaponManager.Aim = new ManualAim();
         }
         else
         {
@@ -73,6 +75,7 @@ public class PlayerInputManager : MonoBehaviour
             inputActions.KBM.Disable();
             inputActions.Arcade.Enable();
             activeMap = inputActions.Arcade;
+            WeaponManager.Aim = new AutoAim();
         }
     }
 }
