@@ -4,11 +4,13 @@ using UnityEngine;
 public class Slash : MonoBehaviour
 {
     public float lifetime = 0.2f;
+    public int particleCount = 40;
     [HideInInspector] public float damage;
     [HideInInspector] public float radius;
     [HideInInspector] public float angle;
 
     public GameObject colliderObj;
+    public GameObject slashAnimation;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,6 +18,7 @@ public class Slash : MonoBehaviour
         Destroy(gameObject, lifetime);
         angle = Mathf.Clamp(angle, -359.9f, 359.9f);
         GenerateCollider();
+        VisualSlash();
     }
 
     // Update is called once per frame
@@ -49,5 +52,12 @@ public class Slash : MonoBehaviour
         col.points = points;
     }
 
-    
+    void VisualSlash()
+    {
+        GameObject obj = Instantiate(slashAnimation, transform.position, transform.rotation);
+
+        SlashMesh slash = obj.GetComponent<SlashMesh>();
+        slash.radius = radius;
+        slash.angle = angle;
+    }
 }
