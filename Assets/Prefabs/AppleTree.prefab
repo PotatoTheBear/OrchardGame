@@ -278,4 +278,5 @@ MonoBehaviour:
   hp: 100
   fruitPerDay: 5
   fruit: {fileID: 7444609336113662899, guid: 840af30520277c741a01a5b84968c610, type: 3}
-  weapon: {fileID: 0}
+  weapon: {fileID: 5599680321858882197, guid: 908a213ef107d6440b21f239638c1aae, type: 3}
+  typeName: AppleTree

@@ -1,9 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public List<GameObject> weaponInventory = new();
+    [SerializeField] private List<GameObject> weaponInventory = new();
+    public static List<GameObject> WeaponInventory { get; private set; } = new();
     private int currentWeaponIndex = 0;
 
     [SerializeField] public GameObject currentWeapon;
@@ -13,12 +15,23 @@ public class WeaponManager : MonoBehaviour
     public static IAim Aim { get; set; }
     public static GameObject Handle { get; private set; }
 
+    private void Awake()
+    {
+        foreach (var obj in WeaponInventory)
+        {
+            if (!weaponInventory.Contains(obj))
+                weaponInventory.Add(obj);
+        }
+        WeaponInventory = weaponInventory;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Handle = GameObject.Find("Handle");
         inputManager = PlayerInputManager.Instance;
         SpawnNewWeapon(weaponInventory[currentWeaponIndex]);
+        StartCoroutine(OnWeaponAmountChanged());
     }
 
     // Update is called once per frame
@@ -29,7 +42,7 @@ public class WeaponManager : MonoBehaviour
         {
             currentWeaponIndex += 1;
             if (currentWeaponIndex >= weaponInventory.Count) currentWeaponIndex -= weaponInventory.Count;
-            else if (currentWeaponIndex < 0) currentWeaponIndex += weaponInventory.Count; // Weapon switching. Next step > Destroy existing weapon instantiate new. Job for tomorrow
+            else if (currentWeaponIndex < 0) currentWeaponIndex += weaponInventory.Count;
             SpawnNewWeapon(weaponInventory[currentWeaponIndex]);
         }
 
@@ -48,5 +61,18 @@ public class WeaponManager : MonoBehaviour
             Destroy(child.gameObject);
         }
         currentWeapon = Instantiate(newWeapon, Handle.transform);
+    }
+
+    private IEnumerator OnWeaponAmountChanged()
+    {
+        yield return null;
+        while (true)
+        {
+            int currentAmount = weaponInventory.Count;
+            yield return new WaitUntil(() => currentAmount != weaponInventory.Count);
+            if (currentWeaponIndex >= weaponInventory.Count) currentWeaponIndex -= weaponInventory.Count;
+            else if (currentWeaponIndex < 0) currentWeaponIndex += weaponInventory.Count; 
+            SpawnNewWeapon(weaponInventory[currentWeaponIndex]);
+        }
     }
 }

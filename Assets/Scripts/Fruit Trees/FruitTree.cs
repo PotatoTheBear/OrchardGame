@@ -10,8 +10,25 @@ public abstract class FruitTree : MonoBehaviour
     [SerializeField] protected GameObject fruit;
     [SerializeField] protected GameObject weapon;
 
-    void OnEnable() => All.Add(this);
-    void OnDisable() => All.Remove(this);
+    public string typeName;
+
+    void OnEnable()
+    {
+        All.Add(this);
+        if (!WeaponManager.WeaponInventory.Contains(weapon))
+        {
+            WeaponManager.WeaponInventory.Add(weapon);
+        }
+    }
+    void OnDisable()
+    {
+        All.Remove(this);
+        
+        if (!All.Exists(obj => obj.typeName == typeName))
+        {
+            WeaponManager.WeaponInventory.Remove(weapon);
+        }
+    }
 
     public void DropFruit()
     {
