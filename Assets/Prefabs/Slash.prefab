@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f952020c57e214409cbca6b9c17325a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slash
-  lifetime: 3
+  lifetime: 5
   damage: 0
   radius: 0
   angle: 0

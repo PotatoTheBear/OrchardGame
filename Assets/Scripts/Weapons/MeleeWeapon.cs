@@ -10,8 +10,9 @@ public class MeleeWeapon : Weapons
     public override void Attack(Vector2 position)
     {
         base.Attack();
-        Debug.Log(WeaponManager.Handle.transform.rotation.eulerAngles.z);
-        Debug.Log(WeaponManager.Handle.transform.rotation.z);
+        if (!canAttack)
+            return;
+        StartCoroutine(Cooldown());
         GameObject newSlash = Instantiate(slashAttack);
         newSlash.transform.rotation = Quaternion.Euler(0, 0, WeaponManager.Handle.transform.rotation.eulerAngles.z);
         newSlash.transform.position = position;

@@ -14,6 +14,7 @@ public class Slash : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, lifetime);
+        angle = Mathf.Clamp(angle, -359.9f, 359.9f);
         GenerateCollider();
     }
 
@@ -27,20 +28,23 @@ public class Slash : MonoBehaviour
     {
         PolygonCollider2D col = colliderObj.GetComponent<PolygonCollider2D>();
 
-        Vector2[] points = new Vector2[3];
+        int segments = Mathf.Max(2, Mathf.CeilToInt(angle / 10f));
+
+        Vector2[] points = new Vector2[segments + 2];
         points[0] = Vector2.zero;
 
         float halfAngle = angle / 2;
 
-        for (int i = -1; i < 2; i += 2)
+        for (int i = 0; i <= segments; i++)
         {
-            float currentAngle = (halfAngle * i);
+            float t = (float)i / segments;
+            float currentAngle = Mathf.Lerp(-halfAngle, halfAngle, t);
             float rad = Mathf.Deg2Rad * currentAngle;
 
             float x = Mathf.Cos(rad) * radius;
             float y = Mathf.Sin(rad) * radius;
 
-            points[i == -1 ? 1 : 2] = new Vector2(x, y);
+            points[i + 1] = new Vector2(x, y);
         }
         col.points = points;
     }
