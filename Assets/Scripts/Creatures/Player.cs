@@ -37,16 +37,16 @@ public class Player : Creature
         if (inputManager.InteractPressed())
         {
             // Voor interact met bijv. fruit
-            var closestFruit = Fruit.GetClosest(transform.position, minInteractDistance);
-            if (closestFruit != null)
+            var closestFruit = Pickupable.GetClosest(transform.position, minInteractDistance);
+            if (closestFruit != null && closestFruit.canInteract)
                 closestFruit.Interact();
         }
 
         if (inputManager.SellPressed())
         {
             // Om fruit te verkopen. Ik zit te denken zoek het dichtsbijzijnde fruit, en dan activeer de functie in de fruit script (fruit class waar elk fruit van inherit, met sell en interact functie)
-            var closestFruit = Fruit.GetClosest(transform.position, minInteractDistance);
-            if (closestFruit != null)
+            var closestFruit = Pickupable.GetClosest(transform.position, minInteractDistance);
+            if (closestFruit != null && closestFruit.canSell)
                 closestFruit.Sell();
         }
 

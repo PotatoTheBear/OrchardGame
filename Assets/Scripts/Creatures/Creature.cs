@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Creature : MonoBehaviour
 {
@@ -11,7 +12,11 @@ public class Creature : MonoBehaviour
     private void OnEnable() => All.Add(this);
     private void OnDisable() => All.Remove(this);
 
-    public void TakeDMG(float dmg) { hp -= dmg; }
+    public void TakeDMG(float dmg) 
+    { 
+        hp -= dmg;
+        StartCoroutine(DamageTick());
+    }
 
     public void Heal(float amount) 
     { 
@@ -51,5 +56,17 @@ public class Creature : MonoBehaviour
         }
             
         return closest;
+    }
+
+    private IEnumerator DamageTick()
+    {
+        if (TryGetComponent(out SpriteRenderer spriteRenderer))
+        {
+            Color oldColor = spriteRenderer.color;
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            spriteRenderer.color = oldColor;
+        }
+        yield return null;
     }
 }

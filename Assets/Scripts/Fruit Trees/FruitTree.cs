@@ -1,24 +1,25 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class FruitTree : MonoBehaviour
 {
     public static List<FruitTree> All = new();
+    public static List<string> ActiveWeapons = new();
 
     [SerializeField] protected float hp;
     [SerializeField] protected float fruitPerDay;
     [SerializeField] protected GameObject fruit;
     [SerializeField] protected GameObject weapon;
+    [SerializeField] protected GameObject weaponPickup;
+
+    [SerializeField] protected Sprite weaponSprite;
 
     public string typeName;
 
     void OnEnable()
     {
         All.Add(this);
-        if (!WeaponManager.WeaponInventory.Contains(weapon))
-        {
-            WeaponManager.WeaponInventory.Add(weapon);
-        }
     }
     void OnDisable()
     {
@@ -27,6 +28,16 @@ public abstract class FruitTree : MonoBehaviour
         if (!All.Exists(obj => obj.typeName == typeName))
         {
             WeaponManager.WeaponInventory.Remove(weapon);
+            ActiveWeapons.Remove(weapon.name);
+        }
+    }
+
+    private IEnumerator Start()
+    {
+        yield return null;
+        if (!WeaponManager.WeaponInventory.Contains(weapon) && !ActiveWeapons.Contains(weapon.name))
+        {
+            DropWeapon();
         }
     }
 
@@ -46,6 +57,27 @@ public abstract class FruitTree : MonoBehaviour
                 rb.linearVelocity = randDirection;
             }
 
+        }
+    }
+
+    void DropWeapon()
+    {
+        Vector2 randDirection = new Vector2(Random.Range(-5, 5), Random.Range(-5, 5));
+
+        GameObject newPickup = Instantiate(weaponPickup);
+        ActiveWeapons.Add(weapon.name);
+
+        WeaponPickup weaponP = newPickup.GetComponent<WeaponPickup>();
+        weaponP.weapon = weapon;
+        newPickup.name = weapon.name + " Pickup";
+        newPickup.GetComponent<SpriteRenderer>().sprite = weaponSprite;
+
+        newPickup.transform.position = new Vector3(transform.position.x, transform.position.y, newPickup.transform.position.z);
+
+        Rigidbody2D rb = newPickup.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = randDirection;
         }
     }
 }
