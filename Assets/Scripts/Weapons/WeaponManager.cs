@@ -30,7 +30,8 @@ public class WeaponManager : MonoBehaviour
     {
         Handle = GameObject.Find("Handle");
         inputManager = PlayerInputManager.Instance;
-        SpawnNewWeapon(weaponInventory[currentWeaponIndex]);
+        if (weaponInventory.Count > 0)
+            SpawnNewWeapon(weaponInventory[currentWeaponIndex]);
         StartCoroutine(OnWeaponAmountChanged());
     }
 
