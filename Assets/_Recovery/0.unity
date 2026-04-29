@@ -222,50 +222,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74573650}
   m_CullTransparentMesh: 1
---- !u!1 &82118022
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 82118024}
-  - component: {fileID: 82118023}
-  m_Layer: 0
-  m_Name: Coins
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &82118023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82118022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4485afbda07747043b66a7ba87556cb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CoinsManager
---- !u!4 &82118024
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82118022}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 894.53046, y: 376.493, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &168916373
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,10 +326,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopSlot (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 2607615337813711594, guid: c33311601026b5942b7641988c4d4102, type: 3}
-      propertyPath: shopManager
-      value: 
-      objectReference: {fileID: 687802340}
     - target: {fileID: 8373349677949319097, guid: c33311601026b5942b7641988c4d4102, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -552,10 +504,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopSlot (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 2607615337813711594, guid: c33311601026b5942b7641988c4d4102, type: 3}
-      propertyPath: shopManager
-      value: 
-      objectReference: {fileID: 687802340}
     - target: {fileID: 8373349677949319097, guid: c33311601026b5942b7641988c4d4102, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -994,6 +942,10 @@ MonoBehaviour:
     price: 3
   - itemSO: {fileID: 11400000, guid: d5d10f0726c8c514fbf39dd9892d183b, type: 2}
     price: 8
+  - itemSO: {fileID: 11400000, guid: d5d10f0726c8c514fbf39dd9892d183b, type: 2}
+    price: 80
+  - itemSO: {fileID: 11400000, guid: d5d10f0726c8c514fbf39dd9892d183b, type: 2}
+    price: 3
   shopSlots:
   - {fileID: 7847051505536694004}
   - {fileID: 1423582893}
@@ -1001,7 +953,6 @@ MonoBehaviour:
   - {fileID: 765562669}
   - {fileID: 718670894}
   - {fileID: 573485806}
-  shopInfo: {fileID: 1583736456}
 --- !u!114 &718670894 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2607615337813711594, guid: c33311601026b5942b7641988c4d4102, type: 3}
@@ -1025,10 +976,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopSlot (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 2607615337813711594, guid: c33311601026b5942b7641988c4d4102, type: 3}
-      propertyPath: shopManager
-      value: 
-      objectReference: {fileID: 687802340}
     - target: {fileID: 8373349677949319097, guid: c33311601026b5942b7641988c4d4102, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1324,10 +1271,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopSlot (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 2607615337813711594, guid: c33311601026b5942b7641988c4d4102, type: 3}
-      propertyPath: shopManager
-      value: 
-      objectReference: {fileID: 687802340}
     - target: {fileID: 8373349677949319097, guid: c33311601026b5942b7641988c4d4102, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1441,7 +1384,6 @@ GameObject:
   - component: {fileID: 1583736455}
   - component: {fileID: 1583736454}
   - component: {fileID: 1583736453}
-  - component: {fileID: 1583736456}
   m_Layer: 0
   m_Name: ShopPanel
   m_TagString: Untagged
@@ -1521,19 +1463,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583736451}
   m_CullTransparentMesh: 1
---- !u!114 &1583736456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583736451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ea833f31b9eba24789b51d6317a1acd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShopInfo
-  itemDescriptionText: {fileID: 2025602688}
 --- !u!1001 &1755754069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1640,6 +1569,50 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 517108905605887041, guid: e245d08626f12214c99a9e9f21e74ab1, type: 3}
   m_PrefabInstance: {fileID: 1755754069}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1898391390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1898391391}
+  - component: {fileID: 1898391392}
+  m_Layer: 0
+  m_Name: TempCoinsStorage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1898391391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898391390}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 894.53046, y: 376.493, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1898391392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898391390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4485afbda07747043b66a7ba87556cb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoinsManager
 --- !u!1 &2025602686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,10 +1762,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopSlot (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 2607615337813711594, guid: c33311601026b5942b7641988c4d4102, type: 3}
-      propertyPath: shopManager
-      value: 
-      objectReference: {fileID: 687802340}
     - target: {fileID: 8373349677949319097, guid: c33311601026b5942b7641988c4d4102, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2008,10 +1977,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopSlot
       objectReference: {fileID: 0}
-    - target: {fileID: 2607615337813711594, guid: c33311601026b5942b7641988c4d4102, type: 3}
-      propertyPath: shopManager
-      value: 
-      objectReference: {fileID: 687802340}
     - target: {fileID: 8373349677949319097, guid: c33311601026b5942b7641988c4d4102, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2120,4 +2085,4 @@ SceneRoots:
   - {fileID: 168916376}
   - {fileID: 632682652}
   - {fileID: 543128904}
-  - {fileID: 82118024}
+  - {fileID: 1898391391}

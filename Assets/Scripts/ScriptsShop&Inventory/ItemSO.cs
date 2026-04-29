@@ -4,6 +4,6 @@ using UnityEngine;
 public class ItemSO : ScriptableObject
 {
     public string itemName;
-    public string itemDescription;
+    [TextArea]public string itemDescription;
     public Sprite icon;
 }
