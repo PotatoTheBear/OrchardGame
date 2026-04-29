@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Weapons/ExplosiveWeapon")]
 public class ExplosiveWeapon : RangedWeapon
 {
     public GameObject slashAttack;
