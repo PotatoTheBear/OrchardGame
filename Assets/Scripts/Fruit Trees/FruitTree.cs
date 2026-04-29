@@ -31,4 +31,22 @@ public abstract class FruitTree : MonoBehaviour
 
         }
     }
+
+    public static FruitTree GetClosest(Vector2 position, float minDist = Mathf.Infinity)
+    {
+        FruitTree closest = null;
+
+        foreach (FruitTree fruitTree in All)
+        {
+            float distance = (new Vector2(fruitTree.transform.position.x, fruitTree.transform.position.y) - position).sqrMagnitude;
+
+            if (distance < minDist)
+            {
+                closest = fruitTree;
+                minDist = distance;
+            }
+        }
+
+        return closest;
+    }
 }

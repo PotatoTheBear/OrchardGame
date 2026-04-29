@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 4502b8cc94b04474d9ccee750c66ee81
+guid: 9196c01f8d8063b459c4c02e3c43d327
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4239185506018114389
-    second: ant png_0
-  - first:
-      213: 8404022773894404389
-    second: ant png_1
-  - first:
-      213: 6653813011953285350
-    second: ant png_2
-  - first:
-      213: -8525911182562678457
-    second: ant png_3
+      213: -7042354443689137966
+    second: vecteezy_detailed-close-up-of-an-ant-showcasing-its-structure-and_55552518_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -109,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ant png_0
+      name: vecteezy_detailed-close-up-of-an-ant-showcasing-its-structure-and_55552518_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 69
-        width: 800
-        height: 496
+        x: 936
+        y: 677
+        width: 2832
+        height: 992
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 55bb13fe1cc94da30800000000000000
-      internalID: 4239185506018114389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ant png_1
-      rect:
-        serializedVersion: 2
-        x: 728
-        y: 346
-        width: 28
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 529d44abf2611a470800000000000000
-      internalID: 8404022773894404389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ant png_2
-      rect:
-        serializedVersion: 2
-        x: 829
-        y: 183
-        width: 10
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6e8f8535ea7175c50800000000000000
-      internalID: 6653813011953285350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ant png_3
-      rect:
-        serializedVersion: 2
-        x: 594
-        y: 0
-        width: 117
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 74922d0a3f0eda980800000000000000
-      internalID: -8525911182562678457
+      spriteID: 2d8e38902f7844e90800000000000000
+      internalID: -7042354443689137966
       vertices: []
       indices: 
       edges: []
@@ -200,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -210,10 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ant png_0: 4239185506018114389
-      ant png_1: 8404022773894404389
-      ant png_2: 6653813011953285350
-      ant png_3: -8525911182562678457
+      vecteezy_detailed-close-up-of-an-ant-showcasing-its-structure-and_55552518_0: -7042354443689137966
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
