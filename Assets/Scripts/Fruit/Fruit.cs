@@ -7,6 +7,7 @@ public abstract class Fruit : MonoBehaviour
 
     [SerializeField] protected float sellValue;
     [SerializeField] protected float decayMultiplier;
+    [HideInInspector] public string weaponName;
 
     protected Pickupable pickupable;
 

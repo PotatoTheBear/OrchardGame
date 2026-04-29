@@ -8,6 +8,7 @@ public class Slash : MonoBehaviour
     [HideInInspector] public float damage;
     [HideInInspector] public float radius;
     [HideInInspector] public float angle;
+    [HideInInspector] public bool isPlayer;
 
     public GameObject colliderObj;
     public GameObject slashAnimation;
@@ -30,6 +31,7 @@ public class Slash : MonoBehaviour
     void GenerateCollider()
     {
         PolygonCollider2D col = colliderObj.GetComponent<PolygonCollider2D>();
+        colliderObj.GetComponent<HitboxDetection>().isPlayer = isPlayer;
 
         int segments = Mathf.Max(2, Mathf.CeilToInt(angle / 10f));
 

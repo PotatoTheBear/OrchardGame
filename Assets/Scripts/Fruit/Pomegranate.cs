@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class Pomegranate : Fruit
 {
-    [SerializeField] protected float ammoValue;
+    [SerializeField] protected int ammoValue;
 
     public override void Interact()
     {
         base.Interact();
-        // Give ammo here
+        if (WeaponManager.currentWeaponsData.TryGetValue(weaponName, out WeaponState weaponData)) {
+            RangedWeaponState rangedData = weaponData as RangedWeaponState;
+            rangedData.reserveAmmo += ammoValue;
+        }
     }
 }

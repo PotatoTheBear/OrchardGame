@@ -45,10 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92d58776ea8e974397b5c4491828519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
-  attackrate: 1
-  BASE_DMG: 5
-  radius: 3
-  angle: 360
+  weaponData: {fileID: 0}
+  weaponName: Morningstar
   slashAttack: {fileID: 5575658461817942521, guid: ca75fd9045ba96343afb5b0a954563bf, type: 3}
 --- !u!212 &2691811776887335632
 SpriteRenderer:

@@ -309,6 +309,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b21254a295f932438504025680fdc5a, type: 3}
+--- !u!1 &262803946
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 262803947}
+  m_Layer: 6
+  m_Name: Handle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &262803947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262803946}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1720911292}
+  m_Father: {fileID: 2069261654}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &664869344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,6 +1168,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
   weaponInventory: []
   currentWeapon: {fileID: 0}
+  allWeaponsData:
+  - {fileID: 11400000, guid: 05df61e096e2a8f44943143d9ca0d0a6, type: 2}
+  - {fileID: 11400000, guid: ac50b006e4001e94184355b4f512dcd1, type: 2}
+  - {fileID: 11400000, guid: 44ac99a55041d6044be0ae68b8a2de55, type: 2}
+  - {fileID: 11400000, guid: f36dd92452bd761499af4add70132bef, type: 2}
 --- !u!114 &1710697378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1329,6 +1366,52 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1720911291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1720911292}
+  - component: {fileID: 1720911293}
+  m_Layer: 6
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1720911292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720911291}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 262803947}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1720911293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720911291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33fd425af986ccd47acc20ed98dfac7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedWeapon
+  weaponName: TestGun
+  bullet: {fileID: 3461894703638336334, guid: 3a166a93135cb6e4fb57aa71f6ea4b96, type: 3}
 --- !u!1 &1760121470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,7 +1796,8 @@ Transform:
   m_LocalPosition: {x: -2.78, y: -1.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 262803947}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6910779752533695166
@@ -1728,10 +1812,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PomegranateTree
       objectReference: {fileID: 0}
-    - target: {fileID: 6131817601470069741, guid: 5900763f2728b7c408403969b789fa7b, type: 3}
-      propertyPath: weapon
-      value: 
-      objectReference: {fileID: 5599680321858882197, guid: 6f0a2c6683f54e04f9eeb31776009bc4, type: 3}
     - target: {fileID: 6703101621172841500, guid: 5900763f2728b7c408403969b789fa7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.01889

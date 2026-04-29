@@ -41,8 +41,6 @@ public class SlashMesh : MonoBehaviour
 
         float currentRadius = radius * t;
 
-        int segments = 20;
-
         Vector3[] vertices = new Vector3[(segments + 1) * 2];
         int[] triangles = new int[segments * 6];
 

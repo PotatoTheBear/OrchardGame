@@ -96,7 +96,7 @@ MonoBehaviour:
   hp: 100
   fruitPerDay: 5
   fruit: {fileID: 4734812080990181420, guid: d055e1f2163ebf3459775be5599ce042, type: 3}
-  weapon: {fileID: 0}
+  weapon: {fileID: 295558330053974717, guid: df51421b4651dbd4281ff57844852c39, type: 3}
   weaponPickup: {fileID: 2506950711608013761, guid: 1ca484874de64254d9baba95fba45567, type: 3}
   weaponSprite: {fileID: 21300000, guid: 56f5867431850a94a9de4b0459d08a58, type: 3}
   typeName: PomegranateTree

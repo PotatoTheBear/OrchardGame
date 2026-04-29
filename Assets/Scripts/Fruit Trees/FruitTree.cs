@@ -14,6 +14,7 @@ public abstract class FruitTree : MonoBehaviour
     [SerializeField] protected GameObject weaponPickup;
 
     [SerializeField] protected Sprite weaponSprite;
+    protected string weaponName;
 
     public string typeName;
 
@@ -39,6 +40,7 @@ public abstract class FruitTree : MonoBehaviour
         {
             DropWeapon();
         }
+        weaponName = weapon.GetComponent<Weapons>().weaponName;
     }
 
     public void DropFruit()
@@ -48,6 +50,7 @@ public abstract class FruitTree : MonoBehaviour
             Vector2 randDirection = new Vector2(Random.Range(-5, 5), Random.Range(-5, 5));
 
             GameObject newFruit = Instantiate(fruit);
+            newFruit.GetComponent<Fruit>().weaponName = weaponName;
 
             newFruit.transform.position = new Vector3(transform.position.x, transform.position.y, newFruit.transform.position.z);
 
