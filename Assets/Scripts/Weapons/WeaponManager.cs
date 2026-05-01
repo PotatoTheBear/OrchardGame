@@ -63,7 +63,7 @@ public class WeaponManager : MonoBehaviour
             currentWeapon.GetComponent<Weapons>().Attack(transform.position, Handle.transform.rotation.eulerAngles.z, true);
         }
 
-        Aim.Aim();
+        Aim.Aim(true, Handle);
     }
 
     void SpawnNewWeapon(GameObject newWeapon)
