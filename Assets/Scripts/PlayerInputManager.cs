@@ -53,7 +53,12 @@ public class PlayerInputManager : MonoBehaviour
     public bool InteractPressed() => activeMap["Interact"].triggered;
     public bool InventoryPressed() => activeMap["Inventory"].triggered;
     public bool SellPressed() => activeMap["Sell"].triggered;
-    public float SwapPressed() => activeMap["Swap"].ReadValue<float>();
+    public float SwapPressed()
+    {
+        if (activeMap["Swap"].WasPressedThisFrame()) 
+            return activeMap["Swap"].ReadValue<float>();
+        return 0;
+    }
 
     public bool FruitPressed() => inputActions.KBM.SpawnFruit.triggered;
 

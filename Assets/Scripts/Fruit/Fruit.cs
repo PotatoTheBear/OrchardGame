@@ -7,11 +7,23 @@ public abstract class Fruit : MonoBehaviour
 
     [SerializeField] protected float sellValue;
     [SerializeField] protected float decayMultiplier;
+    [HideInInspector] public string weaponName;
+
+    protected Pickupable pickupable;
+
+    private void Awake()
+    {
+        if (TryGetComponent(out pickupable))
+        {
+            pickupable.SetInteract(Interact);
+            pickupable.SetSell(Sell);
+        }
+    }
 
     void OnEnable() => All.Add(this);
     void OnDisable() => All.Remove(this);
 
-    public void Sell()
+    public virtual void Sell()
     {
         // Grab money here and increase the value
         Debug.Log($"Selling fruit. Giving {sellValue} coins");

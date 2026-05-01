@@ -1,9 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(-100)]
 public class WeaponManager : MonoBehaviour
 {
-    public List<GameObject> weaponInventory = new();
+    public static Dictionary<string, WeaponState> currentWeaponsData = new();
+    [SerializeField] private List<GameObject> weaponInventory = new();
+    public static List<GameObject> WeaponInventory { get; private set; } = new();
     private int currentWeaponIndex = 0;
 
     [SerializeField] public GameObject currentWeapon;
@@ -13,11 +17,33 @@ public class WeaponManager : MonoBehaviour
     public static IAim Aim { get; set; }
     public static GameObject Handle { get; private set; }
 
+    [SerializeField] private List<WeaponData> allWeaponsData = new();
+    public static List<WeaponData> AllWeaponsData { get; private set; } = new();
+
+    private void Awake()
+    {
+        foreach (var obj in WeaponInventory)
+        {
+            if (!weaponInventory.Contains(obj))
+                weaponInventory.Add(obj);
+        }
+        WeaponInventory = weaponInventory;
+        AllWeaponsData = allWeaponsData;
+        //var data = new WeaponState(AllWeaponsData[0] as RangedWeaponData);
+        //data.data.damage--;
+        //(AllWeaponsData[0] as RangedWeaponData).currentAmmo--;
+        //ScriptableObject.c
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Handle = GameObject.Find("Handle");
+        Handle = transform.Find("Handle").gameObject;
+        Debug.Log(Handle);
         inputManager = PlayerInputManager.Instance;
+        if (weaponInventory.Count > 0)
+            SpawnNewWeapon(weaponInventory[currentWeaponIndex]);
+        StartCoroutine(OnWeaponAmountChanged());
     }
 
     // Update is called once per frame
@@ -28,57 +54,54 @@ public class WeaponManager : MonoBehaviour
         {
             currentWeaponIndex += 1;
             if (currentWeaponIndex >= weaponInventory.Count) currentWeaponIndex -= weaponInventory.Count;
-            else if (currentWeaponIndex < 0) currentWeaponIndex += weaponInventory.Count; // Weapon switching. Next step > Destroy existing weapon instantiate new. Job for tomorrow
+            else if (currentWeaponIndex < 0) currentWeaponIndex += weaponInventory.Count;
+            SpawnNewWeapon(weaponInventory[currentWeaponIndex]);
         }
 
-        if (inputManager.ShootPressed())
+        if (inputManager.ShootPressed() && currentWeapon != null)
         {
-            currentWeapon.GetComponent<Weapons>().Attack(transform.position);
+            currentWeapon.GetComponent<Weapons>().Attack(transform.position, Handle.transform.rotation.eulerAngles.z, true);
         }
 
         Aim.Aim();
     }
 
-    void AimWeapon()
+    void SpawnNewWeapon(GameObject newWeapon)
     {
-        if (inputManager.isKBM)
+        foreach (Transform child in Handle.transform)
         {
-            // Aim at mouse
-            Vector2 lookVector = Camera.main.ScreenToWorldPoint(inputManager.GetAimInput());
-            var angle = Mathf.Atan2(lookVector.y - Handle.transform.position.y, lookVector.x - Handle.transform.position.x);
-            var deg = Mathf.Rad2Deg * angle;
-            Handle.transform.rotation = Quaternion.Euler(0, 0, deg);
-        } 
-        else
-        {
-            // Aim at closest target if exists
-            Creature closestEnemyCreature = Creature.GetClosestEnemy(transform.position);
-            if (closestEnemyCreature == null)
-                return;
-            GameObject closestEnemy = closestEnemyCreature.gameObject;
-
-            var angle = Mathf.Atan2(closestEnemy.transform.position.y - transform.position.y, closestEnemy.transform.position.x - transform.position.x);
-            var deg = Mathf.Rad2Deg * angle;
-
-            Handle.transform.rotation = Quaternion.Euler(0, 0, deg);
+            Destroy(child.gameObject);
         }
-
-
+        currentWeapon = Instantiate(newWeapon, Handle.transform);
+        var currentWeaponScript = currentWeapon.GetComponent<Weapons>();
+        if (!currentWeaponsData.ContainsKey(currentWeaponScript.weaponName))
+            currentWeaponsData.Add(currentWeaponScript.weaponName, CreateState(AllWeaponsData.Find(w => w.weaponName == currentWeaponScript.weaponName)));
+        currentWeaponScript.weaponData = currentWeaponsData[currentWeaponScript.weaponName];
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    if (currentWeapon == null) return;
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, currentWeapon.GetComponent<Weapons>().range);
+    private IEnumerator OnWeaponAmountChanged()
+    {
+        yield return null;
+        while (true)
+        {
+            int currentAmount = weaponInventory.Count;
+            yield return new WaitUntil(() => currentAmount != weaponInventory.Count);
+            if (currentWeaponIndex >= weaponInventory.Count) currentWeaponIndex -= weaponInventory.Count;
+            else if (currentWeaponIndex < 0) currentWeaponIndex += weaponInventory.Count; 
+            SpawnNewWeapon(weaponInventory[currentWeaponIndex]);
+        }
+    }
 
-    //    if ()
-    //    Vector3 left = Quaternion.Euler(0, 0, 45 / 2) * transform.right;
-    //    Vector3 right = Quaternion.Euler(0, 0, -45 / 2) * transform.right;
-
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawLine(transform.position, transform.position + left * currentWeapon.GetComponent<Weapons>().range);
-    //    Gizmos.DrawLine(transform.position, transform.position + right * currentWeapon.GetComponent<Weapons>().range);
-    //}
-
+    public static WeaponState CreateState(WeaponData data)
+    {
+        Debug.Log(data.weaponName);
+        if (data is ExplosiveWeaponData explosiveData) // IMPORTANT >> This is nested from RangedWeaponData, so must be checked first
+            return new ExplosiveWeaponState(explosiveData);
+        else if (data is RangedWeaponData rangedData)
+            return new RangedWeaponState(rangedData);
+        else if (data is MeleeWeaponData meleeData)
+            return new MeleeWeaponState(meleeData);
+        else
+            return new WeaponState(data);
+    }
 }

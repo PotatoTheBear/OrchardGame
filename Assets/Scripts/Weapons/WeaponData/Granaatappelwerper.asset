@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d63bc3fab4c0143a8ad1b31b2b9fea, type: 3}
+  m_Name: Granaatappelwerper
+  m_EditorClassIdentifier: Assembly-CSharp::ExplosiveWeaponData
+  weaponName: Granaatappelwerper
+  damage: 50
+  attackrate: 5
+  canAttack: 1
+  bulletSpeed: 7
+  maxAmmo: 5
+  reserveAmmo: 20
+  reloadTime: 3
+  currentAmmo: 5
+  explosionRadius: 5
+  explosionDamageMultiplier: 0.8
