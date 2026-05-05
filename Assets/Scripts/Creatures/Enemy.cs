@@ -10,11 +10,13 @@ public enum EnemyBehavior
 public class Enemy : Creature
 {
     private IEnemyMovement movement;
+    private IAim aim;
     [SerializeField] private EnemyBehavior behavior = EnemyBehavior.CloserTarget;
 
     private void Start()
     {
         movement = new EntityMovement();
+        aim = new AutoAim();
     }
 
     void Update()
@@ -52,7 +54,8 @@ public class Enemy : Creature
             else
                 movement.MoveToTree(this);
         }
-
+        aim.Aim(false, transform.Find("Handle").gameObject);
+        transform.Find("Handle").Find("TestEnemyGun").gameObject.GetComponent<Weapons>().Attack(transform.position, transform.rotation.eulerAngles.z, false);
         Death();
     }
 }
