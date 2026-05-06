@@ -1441,8 +1441,8 @@ MonoBehaviour:
   - {fileID: 965516619}
   Player: {fileID: 2041197708}
   spawnIntervalBase: 5
-  spawnRadius: 10
-  enemiesPerWaveBase: 5
+  spawnRadius: 20
+  enemiesPerWaveBase: 15
   waveDuration: 20
   timeBetweenWaves: 3
 --- !u!1660057539 &9223372036854775807
