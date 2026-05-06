@@ -52,10 +52,13 @@ public class WeaponManager : MonoBehaviour
         float swapValue = inputManager.SwapPressed();
         if (swapValue != 0)
         {
-            currentWeaponIndex += 1;
-            if (currentWeaponIndex >= weaponInventory.Count) currentWeaponIndex -= weaponInventory.Count;
-            else if (currentWeaponIndex < 0) currentWeaponIndex += weaponInventory.Count;
-            SpawnNewWeapon(weaponInventory[currentWeaponIndex]);
+            if (weaponInventory.Count > 0)
+            {
+                currentWeaponIndex += 1;
+                if (currentWeaponIndex >= weaponInventory.Count) currentWeaponIndex -= weaponInventory.Count;
+                else if (currentWeaponIndex < 0) currentWeaponIndex += weaponInventory.Count;
+                SpawnNewWeapon(weaponInventory[currentWeaponIndex]);
+            }
         }
 
         if (inputManager.ShootPressed() && currentWeapon != null)

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8771575962681642234}
   - component: {fileID: 5662977485520458476}
   - component: {fileID: 6719886673990327133}
-  - component: {fileID: 8069552554548730986}
   - component: {fileID: 2388642549337886080}
+  - component: {fileID: 1526776802721199589}
   m_Layer: 0
   m_Name: WeaponPickup
   m_TagString: Untagged
@@ -107,20 +107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponPickup
   weapon: {fileID: 0}
---- !u!114 &8069552554548730986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2506950711608013761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43663e9d062997b4ea300387669dbec9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Pickupable
-  canInteract: 1
-  canSell: 0
 --- !u!50 &2388642549337886080
 Rigidbody2D:
   serializedVersion: 5
@@ -148,3 +134,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1526776802721199589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506950711608013761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67cbf5862eb8b9d42bed6cf41be19302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable

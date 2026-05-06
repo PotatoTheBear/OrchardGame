@@ -1,10 +1,15 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : Creature
 {
-    public static Player Instance { get; private set; }
+    public static Player Instance { get; set; }
+
+    public int currentWater;
+    [HideInInspector] public int maxWater;
+    public int healPerWater;
 
     [SerializeField] protected float dashCooldown;
     private PlayerInputManager inputManager;
@@ -14,11 +19,27 @@ public class Player : Creature
 
     private Coroutine dashCoroutine;
 
+    private GameObject PlayerUI;
+    Slider waterSlider;
+    Slider hpSlider;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         inputManager = PlayerInputManager.Instance;
         Instance = this;
+        maxWater = currentWater;
+        PlayerUI = GameObject.Find("PlayerUI");
+        waterSlider = PlayerUI.transform.Find("water_slider").GetComponent<Slider>();
+        hpSlider = PlayerUI.transform.Find("hp_slider").GetComponent<Slider>();
+        UpdateMaxSliderValue(hpSlider, maxHp);
+        UpdateMaxSliderValue(waterSlider, maxWater);
+        UpdateSliderValue(hpSlider, hp);
+        UpdateSliderValue(waterSlider, currentWater);
+        StartCoroutine(FruitTree.WaitForValueChange(() => maxHp, delegate { UpdateMaxSliderValue(hpSlider, maxHp); })); // Max HP Update
+        StartCoroutine(FruitTree.WaitForValueChange(() => maxWater, delegate { UpdateMaxSliderValue(waterSlider, maxWater); })); // Max Water Update
+        StartCoroutine(FruitTree.WaitForValueChange(() => hp, delegate { UpdateSliderValue(hpSlider, hp); })); // Current HP Update
+        StartCoroutine(FruitTree.WaitForValueChange(() => currentWater, delegate { UpdateSliderValue(waterSlider, currentWater); })); // Current Water Update
 
         movement = new WalkMovement();
     }
@@ -37,16 +58,16 @@ public class Player : Creature
         if (inputManager.InteractPressed())
         {
             // Voor interact met bijv. fruit
-            var closestFruit = Pickupable.GetClosest(transform.position, minInteractDistance);
-            if (closestFruit != null && closestFruit.canInteract)
+            var closestFruit = Interactable.GetClosest(transform.position, minInteractDistance);
+            if (closestFruit != null)
                 closestFruit.Interact();
         }
 
         if (inputManager.SellPressed())
         {
             // Om fruit te verkopen. Ik zit te denken zoek het dichtsbijzijnde fruit, en dan activeer de functie in de fruit script (fruit class waar elk fruit van inherit, met sell en interact functie)
-            var closestFruit = Pickupable.GetClosest(transform.position, minInteractDistance);
-            if (closestFruit != null && closestFruit.canSell)
+            var closestFruit = Sellable.GetClosest(transform.position, minInteractDistance);
+            if (closestFruit != null)
                 closestFruit.Sell();
         }
 
@@ -65,4 +86,7 @@ public class Player : Creature
         yield return new WaitForSeconds(dashCooldown);
         dashCoroutine = null;
     }
+
+    public static void UpdateSliderValue(Slider slider, float value) => slider.value = value;
+    public static void UpdateMaxSliderValue(Slider slider, float value) => slider.maxValue = value;
 }

@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 5310068553182378611}
   - component: {fileID: 9099793591939030685}
   - component: {fileID: 6966731252623968429}
-  - component: {fileID: 1117711726067244479}
+  - component: {fileID: 1303691030261619752}
+  - component: {fileID: -5271540120841248026}
   m_Layer: 0
   m_Name: Pomegranate
   m_TagString: Untagged
@@ -172,8 +173,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pomegranate
   sellValue: 5
   decayMultiplier: 2
+  weaponName: 
   ammoValue: 30
---- !u!114 &1117711726067244479
+--- !u!114 &1303691030261619752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,8 +184,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 4734812080990181420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43663e9d062997b4ea300387669dbec9, type: 3}
+  m_Script: {fileID: 11500000, guid: d5a5caa5e5066344b9f82a768b8e37db, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Pickupable
-  canInteract: 1
-  canSell: 1
+  m_EditorClassIdentifier: Assembly-CSharp::Sellable
+--- !u!114 &-5271540120841248026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4734812080990181420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67cbf5862eb8b9d42bed6cf41be19302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable

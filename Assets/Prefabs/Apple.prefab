@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3064639298733334563}
   - component: {fileID: 8945904771937932759}
   - component: {fileID: 688964089537358554}
-  - component: {fileID: 8447932764122044892}
+  - component: {fileID: 2024113964801629404}
+  - component: {fileID: -934006585225459309}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Untagged
@@ -172,8 +173,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Apple
   sellValue: 5
   decayMultiplier: 3
+  weaponName: 
   healAmount: 20
---- !u!114 &8447932764122044892
+--- !u!114 &2024113964801629404
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,8 +184,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7444609336113662899}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43663e9d062997b4ea300387669dbec9, type: 3}
+  m_Script: {fileID: 11500000, guid: 67cbf5862eb8b9d42bed6cf41be19302, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Pickupable
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
   canInteract: 1
+--- !u!114 &-934006585225459309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444609336113662899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a5caa5e5066344b9f82a768b8e37db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sellable
   canSell: 1
