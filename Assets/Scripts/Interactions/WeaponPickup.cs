@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour
 {
-    private Pickupable pickupable;
+    private Interactable interactable;
     [HideInInspector] public GameObject weapon;
 
     private void Awake()
     {
-        pickupable = GetComponent<Pickupable>();
+        interactable = GetComponent<Interactable>();
 
-        pickupable.SetInteract(Interact);
+        interactable.SetInteract(Interact);
     }
 
     private void Start()
