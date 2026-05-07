@@ -3,10 +3,9 @@ using UnityEngine;
 public class AutoAim : IAim
 {
     // Aim at the closest enemy
-    public void Aim()
+    public void Aim(bool isPlayer, GameObject handle)
     {
-        GameObject handle = WeaponManager.Handle;
-        Creature closestEnemyCreature = Creature.GetClosestEnemy(handle.transform.position);
+        Creature closestEnemyCreature = Creature.GetClosestEnemy(handle.transform.position, isPlayer);
         if (closestEnemyCreature == null)
             return;
         GameObject closestEnemy = closestEnemyCreature.gameObject;

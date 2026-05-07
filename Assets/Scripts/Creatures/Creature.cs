@@ -37,8 +37,12 @@ public class Creature : MonoBehaviour
         }
     }
 
-    public static Creature GetClosestEnemy(Vector2 position, float minDist = Mathf.Infinity)
+    public static Creature GetClosestEnemy(Vector2 position, bool isPlayer, float minDist = Mathf.Infinity)
     {
+        if (!isPlayer)
+        {
+            return All.Find(creature => creature.gameObject.CompareTag("Player"));
+        }
         Creature closest = null;
 
         foreach (Creature creature in All)
