@@ -16,8 +16,8 @@ MonoBehaviour:
   damage: 1
   attackrate: 5
   canAttack: 1
-  bulletSpeed: 1
+  bulletSpeed: 5
   maxAmmo: 5
-  reserveAmmo: 5
+  reserveAmmo: 99999999
   reloadTime: 1
   currentAmmo: 0
