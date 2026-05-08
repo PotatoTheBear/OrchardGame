@@ -169,6 +169,7 @@ public abstract class FruitTree : MonoBehaviour
     {
         SliderMax = maxHp;
         UpdateHealth();
+    }
     public static FruitTree GetClosest(Vector2 position, float minDist = Mathf.Infinity)
     {
         FruitTree closest = null;
@@ -187,3 +188,4 @@ public abstract class FruitTree : MonoBehaviour
         return closest;
     }
 }
+
