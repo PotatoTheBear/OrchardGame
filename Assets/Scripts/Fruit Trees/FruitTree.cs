@@ -8,6 +8,8 @@ public abstract class FruitTree : MonoBehaviour
     public static List<FruitTree> All = new();
     public static List<string> ActiveWeapons = new();
 
+    [HideInInspector] public Sprite sprite => transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite;
+
     [SerializeField] protected float hp;
     [SerializeField] protected float maxHp;
     [SerializeField] protected float fruitPerDay;
