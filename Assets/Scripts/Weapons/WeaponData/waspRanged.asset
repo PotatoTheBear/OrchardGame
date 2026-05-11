@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1356221d8660a9e4e8acdfd757e16e4c, type: 3}
   m_Name: waspRanged
   m_EditorClassIdentifier: Assembly-CSharp::RangedWeaponData
-  weaponName: waspRanged
+  weaponName: waspGun
   damage: 2
-  attackrate: 5
+  attackrate: 2
   canAttack: 1
-  bulletSpeed: 2
+  bulletSpeed: 5
   maxAmmo: 3
-  reserveAmmo: 3
-  reloadTime: 1
+  reserveAmmo: 99999
+  reloadTime: 2
   currentAmmo: 0

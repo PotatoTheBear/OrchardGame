@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     public float waveDuration = 0f;
     public event Action<int> KillCountChanged;
 
+    // Reference to EnemySpawner for wave timer
+    [SerializeField] private EnemySpawner enemySpawner;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -34,5 +37,23 @@ public class GameManager : MonoBehaviour
     {
         killCount++;
         KillCountChanged?.Invoke(killCount);
+    }
+
+    public float GetWaveTimeRemaining()
+    {
+        if (enemySpawner != null)
+        {
+            return enemySpawner.GetWaveTimeRemaining();
+        }
+        return 0f;
+    }
+
+    public bool IsWaveActive()
+    {
+        if (enemySpawner != null)
+        {
+            return enemySpawner.IsWaveActive();
+        }
+        return false;
     }
 }
