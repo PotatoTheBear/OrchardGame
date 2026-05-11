@@ -34,6 +34,7 @@ public class Enemy : Creature
 
     void Update()
     {
+        Death();
         // Determine the preferred target (player or closest tree) based on behavior
         GameObject targetObj = null;
         Vector2 targetPos = Vector2.zero;
@@ -204,6 +205,6 @@ public class Enemy : Creature
             }
         }
 
-        Death();
+        
     }
 }

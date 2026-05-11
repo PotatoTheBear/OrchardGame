@@ -12,6 +12,7 @@ public class ExplosiveBullet : Bullet
         newSlash.transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z);
         newSlash.transform.position = transform.position;
         Slash newSlashScript = newSlash.GetComponent<Slash>();
+        Debug.Log(damage);
         newSlashScript.damage = damage;
         newSlashScript.radius = explosionRadius;
         newSlashScript.angle = 359.9f;

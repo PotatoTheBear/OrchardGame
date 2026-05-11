@@ -15,7 +15,7 @@ public class ExplosiveWeapon : RangedWeapon
     public override void SetBulletStats(GameObject newBullet, bool isPlayer)
     {
         ExplosiveBullet newBulletScript = newBullet.GetComponent<ExplosiveBullet>();
-        newBulletScript.damage *= typeData.damage * typeData.explosionDamageMultiplier;
+        newBulletScript.damage = typeData.damage * typeData.explosionDamageMultiplier;
         newBulletScript.explosionRadius = typeData.explosionRadius;
         newBulletScript.slashAttack = slashAttack;
         newBulletScript.isPlayer = isPlayer;
