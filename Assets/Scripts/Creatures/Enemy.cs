@@ -11,12 +11,25 @@ public class Enemy : Creature
 {
     private IEnemyMovement movement;
     private IAim aim;
+    private GameObject handleGameObject;
+    private Weapons[] weaponsCache;
+    [SerializeField] private bool attackAllWeapons = true;
     [SerializeField] private EnemyBehavior behavior = EnemyBehavior.CloserTarget;
 
     private void Start()
     {
         movement = new EntityMovement();
         aim = new AutoAim();
+        var handle = transform.Find("Handle");
+        if (handle != null)
+        {
+            handleGameObject = handle.gameObject;
+            weaponsCache = handleGameObject.GetComponentsInChildren<Weapons>();
+        }
+        else
+        {
+            weaponsCache = new Weapons[0];
+        }
     }
 
     void Update()
