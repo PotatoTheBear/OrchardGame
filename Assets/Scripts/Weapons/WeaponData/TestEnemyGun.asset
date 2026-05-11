@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangedWeaponData
   weaponName: TestEnemyGun
   damage: 1
-  attackrate: 9999
+  attackrate: 2
   canAttack: 1
-  bulletSpeed: 0.1
+  bulletSpeed: 7
   maxAmmo: 67
   reserveAmmo: 67
   reloadTime: 1

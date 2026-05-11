@@ -9,14 +9,15 @@ public abstract class Fruit : MonoBehaviour
     [SerializeField] protected float decayMultiplier;
     [HideInInspector] public string weaponName;
 
-    protected Pickupable pickupable;
-
     private void Awake()
     {
-        if (TryGetComponent(out pickupable))
+        if (TryGetComponent(out Interactable interactable))
         {
-            pickupable.SetInteract(Interact);
-            pickupable.SetSell(Sell);
+            interactable.SetInteract(Interact);
+        }
+        if (TryGetComponent(out Sellable sellable))
+        {
+            sellable.SetSell(Sell);
         }
     }
 

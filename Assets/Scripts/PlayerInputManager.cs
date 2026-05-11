@@ -14,7 +14,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private InputActionMap activeMap;
 
-    public bool isKBM;
+    public bool isKBM = true;
 
     private void Awake()
     {
