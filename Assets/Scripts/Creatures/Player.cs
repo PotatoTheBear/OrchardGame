@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -22,6 +23,12 @@ public class Player : Creature
     private GameObject PlayerUI;
     Slider waterSlider;
     Slider hpSlider;
+
+    //Lose elementen
+
+    public bool hasDied = false;
+    public GameObject deathUI;
+    public GameObject BackButton;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,6 +54,7 @@ public class Player : Creature
     // Update is called once per frame
     void Update()
     {
+        Death();
         if (inputManager.DashPressed())
         {
             Vector2 input = inputManager.GetMoveInput();
@@ -77,7 +85,25 @@ public class Player : Creature
 
         movement.Move(this);
     }
+    //bool toevegen en ui toevoegen on player death
+    public override void Death()
+    {
+        if (hp <= 0 && hasDied == false)
+        {
+            Destroy(gameObject);
+            hasDied = true;
+            LosingUI();
+        }
+    }
 
+    public void LosingUI()
+    {
+        PlayerUI.SetActive(false);
+        deathUI.SetActive(true);
+        Time.timeScale = 0;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(BackButton);
+    }
     IEnumerator DashRoutine(Vector3 direction)
     {
         movement = new DashMovement(direction);

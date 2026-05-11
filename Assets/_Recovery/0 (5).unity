@@ -1117,9 +1117,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1610345164}
-        m_TargetAssemblyTypeName: MainMenuScript, Assembly-CSharp
-        m_MethodName: OnArcadePress
+      - m_Target: {fileID: 2145893375}
+        m_TargetAssemblyTypeName: PlayerInputManager, Assembly-CSharp
+        m_MethodName: SwitchControlScheme
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

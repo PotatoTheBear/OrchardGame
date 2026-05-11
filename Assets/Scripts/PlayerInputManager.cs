@@ -14,7 +14,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private InputActionMap activeMap;
 
-    public bool isKBM = true;
+    public bool isKBM;
 
     private void Awake()
     {
@@ -64,9 +64,8 @@ public class PlayerInputManager : MonoBehaviour
 
     public void SwitchControlScheme()
     {
-        isKBM = !isKBM;
         
-        if (isKBM)
+        if (isKBM == false)
         {
             //playerInput.SwitchCurrentControlScheme("Keyboard&Mouse");
             inputActions.Arcade.Disable();
@@ -74,7 +73,7 @@ public class PlayerInputManager : MonoBehaviour
             activeMap = inputActions.KBM;
             WeaponManager.Aim = new ManualAim();
         }
-        else
+        else if (isKBM == true) 
         {
             //playerInput.SwitchCurrentControlScheme("Arcade Kast");
             inputActions.KBM.Disable();
