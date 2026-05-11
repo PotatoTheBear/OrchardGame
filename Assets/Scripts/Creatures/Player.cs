@@ -14,9 +14,10 @@ public class Player : Creature
 
     [SerializeField] protected float dashCooldown;
     private PlayerInputManager inputManager;
-    private float minInteractDistance = 16;
+    public float minInteractDistance = 16;
 
-    private IMovement movement;
+    [HideInInspector] public IMovement movement;
+    [HideInInspector] public IInteract interact;
 
     private Coroutine dashCoroutine;
 
@@ -49,6 +50,7 @@ public class Player : Creature
         StartCoroutine(FruitTree.WaitForValueChange(() => currentWater, delegate { UpdateSliderValue(waterSlider, currentWater); })); // Current Water Update
 
         movement = new WalkMovement();
+        interact = new Closest();
     }
 
     // Update is called once per frame
@@ -65,10 +67,7 @@ public class Player : Creature
 
         if (inputManager.InteractPressed())
         {
-            // Voor interact met bijv. fruit
-            var closestFruit = Interactable.GetClosest(transform.position, minInteractDistance);
-            if (closestFruit != null)
-                closestFruit.Interact();
+            interact.Interact();
         }
 
         if (inputManager.SellPressed())
