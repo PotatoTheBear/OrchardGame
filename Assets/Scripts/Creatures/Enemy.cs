@@ -89,8 +89,27 @@ public class Enemy : Creature
             }
         }
 
-        // Aim at the chosen target if available; otherwise fallback to auto-aim behavior
-        if (targetObj != null)
+         // Determine if player is in ranged attack range (for aiming)
+        bool playerInRangedRange = false;
+        Vector2 playerPos2 = Vector2.zero;
+        if (Player.Instance != null)
+        {
+            var enemyPos2 = new Vector2(transform.position.x, transform.position.y);
+            playerPos2 = new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y);
+            float playerDist = (playerPos2 - enemyPos2).sqrMagnitude;
+            float rangedAttackRange = 20f; // Adjust this value for ranged attack range
+            playerInRangedRange = playerDist <= (rangedAttackRange * rangedAttackRange);
+        }
+
+        // Aim at the player if in ranged range, otherwise aim at chosen target
+        if (playerInRangedRange && Player.Instance != null)
+        {
+            var handleTransform = (handleGameObject != null) ? handleGameObject.transform : transform;
+            var angle = Mathf.Atan2(playerPos2.y - handleTransform.position.y, playerPos2.x - handleTransform.position.x);
+            var deg = Mathf.Rad2Deg * angle;
+            handleTransform.rotation = Quaternion.Euler(0, 0, deg);
+        }
+        else if (targetObj != null)
         {
             var handleTransform = (handleGameObject != null) ? handleGameObject.transform : transform;
             var angle = Mathf.Atan2(targetPos.y - handleTransform.position.y, targetPos.x - handleTransform.position.x);
@@ -156,9 +175,9 @@ public class Enemy : Creature
                             w.Attack(pos, rotZ, false);
                     }
                 }
-                else
+                else if (playerInRangedRange)
                 {
-                    // only non-melee (ranged) weapons
+                    // ranged weapons on player if in range (regardless of primary target)
                     foreach (var w in weaponsCache)
                     {
                         if (w == null) continue;
@@ -176,18 +195,6 @@ public class Enemy : Creature
                     {
                         if (w == null) continue;
                         if (w.weaponData is MeleeWeaponState)
-                        {
-                            w.Attack(pos, rotZ, false);
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    foreach (var w in weaponsCache)
-                    {
-                        if (w == null) continue;
-                        if (!(w.weaponData is MeleeWeaponState))
                         {
                             w.Attack(pos, rotZ, false);
                             break;

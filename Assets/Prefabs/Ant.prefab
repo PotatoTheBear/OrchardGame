@@ -44,7 +44,8 @@ GameObject:
   - component: {fileID: 7003299957163175092}
   - component: {fileID: 2855883776151820418}
   - component: {fileID: 2972771596812925972}
-  m_Layer: 0
+  - component: {fileID: 4174661835674896054}
+  m_Layer: 6
   m_Name: Ant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,6 +144,42 @@ MonoBehaviour:
   movementSpeed: 1
   attackAllWeapons: 1
   behavior: 2
+--- !u!58 &4174661835674896054
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8087822014150562668}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 2.46, y: 2.1}
+  m_Radius: 8.94
 --- !u!1001 &67616031339419223
 PrefabInstance:
   m_ObjectHideFlags: 0
