@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1356221d8660a9e4e8acdfd757e16e4c, type: 3}
-  m_Name: waspRanged
+  m_Name: waspGun
   m_EditorClassIdentifier: Assembly-CSharp::RangedWeaponData
   weaponName: waspGun
   damage: 2
