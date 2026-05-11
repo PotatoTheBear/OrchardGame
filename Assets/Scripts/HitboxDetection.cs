@@ -27,5 +27,13 @@ public class HitboxDetection : MonoBehaviour
                 }
             }
         }
+        else if (! isPlayer)
+        {
+            if (collision.TryGetComponent(out FruitTree fruitTree))
+            {
+                fruitTree.TakeDMG(gameObject.GetComponentInParent<Slash>().damage);
+                hitEnemies.Add(collision.gameObject);
+            }
+        }
     }
 }

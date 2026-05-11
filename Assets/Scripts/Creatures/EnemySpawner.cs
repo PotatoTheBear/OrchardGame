@@ -6,7 +6,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Player;
 
     public float spawnIntervalBase = 5f;
-    public float spawnRadius = 10f;
+    public float spawnRadius = 5f;
+    public float closeSpawnProtectionRadius = 2f;
     public int enemiesPerWaveBase = 5;
     public float waveDuration = 20f;
     public float timeBetweenWaves = 3f;
@@ -16,6 +17,9 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesSpawnedThisWave = 0;
     private int enemiesThisWaveMax = 0;
     private bool waveActive = false;
+
+    public float GetWaveTimeRemaining() => waveActive ? Mathf.Max(0, waveDuration - waveTimer) : 0f;
+    public bool IsWaveActive() => waveActive;
 
     private void Start()
     {
@@ -95,6 +99,10 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
         Vector2 spawnPos = (Vector2)Player.transform.position + Random.insideUnitCircle * spawnRadius;
+        do
+        {
+            spawnPos = (Vector2)Player.transform.position + Random.insideUnitCircle * spawnRadius;
+        } while ((spawnPos - (Vector2)Player.transform.position).magnitude < closeSpawnProtectionRadius);   
         Instantiate(prefab, spawnPos, Quaternion.identity);
     }
 
@@ -102,5 +110,6 @@ public class EnemySpawner : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, spawnRadius);
+        Gizmos.DrawWireSphere(transform.position, closeSpawnProtectionRadius);
     }
 }

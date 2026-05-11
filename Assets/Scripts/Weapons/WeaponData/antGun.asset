@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangedWeaponData
   weaponName: antGun
   damage: 1
-  attackrate: 5
+  attackrate: 2
   canAttack: 1
-  bulletSpeed: 1
+  bulletSpeed: 5
   maxAmmo: 5
-  reserveAmmo: 5
+  reserveAmmo: 99999999
   reloadTime: 1
   currentAmmo: 0
